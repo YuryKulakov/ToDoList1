@@ -19,14 +19,34 @@ public class ToDoController {
     }
 
     @GetMapping("todo/create")
-    public List<ToDoList> getAll(){
+    public List<ToDoList> getAll() {
         return toDoService.getAll();
     }
 
+    @GetMapping("todo/listTodoByUsername")
+    public List<ToDoList> findTodoByUsername(@PathVariable String username) {
+        return toDoService.getTodoForUser(username);
+    }
+
+    @GetMapping("todo/listTodoById")
+    public List<ToDoList> findTodoByUsername(@PathVariable Long userId) {
+        return toDoService.getTodoForUserId(userId);
+    }
+
+    @GetMapping("todo/listTodoByTitle")
+    public List<ToDoList> findTodoByTitle(@PathVariable String title) {
+        return toDoService.getFindByTitle(title);
+    }
+
     @PostMapping("todo/create")
-    public ResponseEntity<ToDoList> create(@RequestBody ToDoList toDoList){
+    public ResponseEntity<ToDoList> create(@RequestBody ToDoList toDoList) {
         return ResponseEntity.ok(toDoService.create(toDoList));
     }
+
+//    @PutMapping("todo/")
+//    public ResponseEntity<ToDoList> taskDone(@RequestBody ToDoList toDoList) {
+//        return ResponseEntity.ok(toDoService.taskDone(toDoList));
+//    }
 
 
 }

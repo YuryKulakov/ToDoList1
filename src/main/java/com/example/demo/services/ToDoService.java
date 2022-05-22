@@ -18,22 +18,37 @@ public class ToDoService {
         this.toDoRepository = toDoRepository;
     }
 
-    public List<ToDoList> getAll(){
+    public List<ToDoList> getAll() {
         return toDoRepository.findAll();
     }
 
-    public ToDoList create(ToDoList toDoList){
+    public ToDoList create(ToDoList toDoList) {
         toDoList.setDone(false);
         toDoList.setDateNow(Date.valueOf(LocalDate.now()));
         return toDoRepository.save(toDoList);
 
     }
 
-    List <ToDoList> findByTitle(ToDoList toDoList){
-        return
+    public ToDoList taskDone(ToDoList toDoList) {
+        toDoList.setDone(true);
+        return toDoRepository.save(toDoList);
+
     }
 
-    public void delete(Long id){
+    public List<ToDoList> getFindByTitle(String titleSearch) {
+        return toDoRepository.findByTitle(titleSearch);
+    }
+
+    public List<ToDoList> getTodoForUser(String username) {
+        return toDoRepository.findAllByUsername(username);
+    }
+
+    public List<ToDoList> getTodoForUserId(Long userId) {
+        return toDoRepository.findAllByUserId(userId);
+    }
+
+
+    public void delete(Long id) {
         toDoRepository.deleteById(id);
     }
 }
