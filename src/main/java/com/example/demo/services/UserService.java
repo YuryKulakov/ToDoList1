@@ -22,13 +22,27 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    /*the method checks for the presence of a user by name in the repository,
+    if there is no user in the database - it returns false, if a user with the same name exists - true*/
     public boolean findUserByUsername(String userName) {
         boolean existingUser;
         if (userRepository.findByUsername(userName) != null) {
             existingUser = true;
-            System.out.println("User existence: " + existingUser);
         } else {
             existingUser = false;
+        }
+        return existingUser;
+    }
+
+    /*the method searches for a user by a unique id*/
+    public boolean findUserById(User user) {
+        boolean existingUser;
+        if (userRepository.existsById(user.getId())) {
+            existingUser = true;
+            System.out.println("This user is present: " + existingUser);
+        } else {
+            existingUser = false;
+            System.out.println("This user is missing: " + existingUser);
         }
         return existingUser;
     }
@@ -36,5 +50,6 @@ public class UserService {
     public void saveUser(User user) {
         userRepository.save(user);
     }
+
 
 }
