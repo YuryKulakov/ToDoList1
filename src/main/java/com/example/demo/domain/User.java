@@ -1,20 +1,18 @@
 package com.example.demo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "userinfo")
 public class User {
 
     @Id
+    @GeneratedValue
     private Integer id;
-    @Column(name = "username")
-    private String userName;
+    @Column(name = "username",unique = true)
+    private String username;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -22,11 +20,11 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 }

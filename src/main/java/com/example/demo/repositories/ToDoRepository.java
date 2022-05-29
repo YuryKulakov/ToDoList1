@@ -11,5 +11,4 @@ public interface ToDoRepository extends JpaRepository<ToDoList, Long> {
 
     List<ToDoList> findAllByUsername(String username);
 
-    List<ToDoList> findAllByUserId(Long id);
 }

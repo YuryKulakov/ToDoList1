@@ -18,11 +18,6 @@ public class UserController {
 
     @PostMapping("/createUser")
     private boolean addUser(@RequestBody User user) {
-        boolean userExits = userService.findUserByUsername(user.getUserName());
-        if (userExits) {
-            System.out.println("A user with this name exists, please select a different name.");
-            return false;
-        }
         userService.saveUser(user);
         return true;
     }

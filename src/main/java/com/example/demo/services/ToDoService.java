@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ToDoService {
@@ -29,9 +30,14 @@ public class ToDoService {
 
     }
 
-    public ToDoList taskDone(ToDoList toDoList) {
-        toDoList.setDone(true);
-        return toDoRepository.save(toDoList);
+    public ToDoList taskDone(Long toDoList) {
+        Optional<ToDoList> optionalToDoList = toDoRepository.findById(toDoList);
+        if(optionalToDoList.isPresent()){
+            ToDoList toDoList1 = optionalToDoList.get();
+            toDoList1.setDone(true);
+            return toDoRepository.save(toDoList1);
+        }
+        return null;
 
     }
 
@@ -43,9 +49,6 @@ public class ToDoService {
         return toDoRepository.findAllByUsername(username);
     }
 
-    public List<ToDoList> getTodoForUserId(Long userId) {
-        return toDoRepository.findAllByUserId(userId);
-    }
 
 
     public void delete(Long id) {

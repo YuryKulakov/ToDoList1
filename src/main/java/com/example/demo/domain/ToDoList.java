@@ -3,17 +3,17 @@ package com.example.demo.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.sql.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name="todolist")
 public class ToDoList {
     @Id
+    @GeneratedValue
     private long id;
     private String title;
     private boolean done;
@@ -21,5 +21,5 @@ public class ToDoList {
     private int priority;
 
     @Column(name = "username")
-    private String name;
+    private String username;
 }

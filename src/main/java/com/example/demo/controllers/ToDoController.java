@@ -28,11 +28,6 @@ public class ToDoController {
         return toDoService.getTodoForUser(username);
     }
 
-    @GetMapping("todo/listTodoById")
-    public List<ToDoList> findTodoByUsername(@PathVariable Long userId) {
-        return toDoService.getTodoForUserId(userId);
-    }
-
     @GetMapping("todo/listTodoByTitle")
     public List<ToDoList> findTodoByTitle(@PathVariable String title) {
         return toDoService.getFindByTitle(title);
@@ -43,10 +38,10 @@ public class ToDoController {
         return ResponseEntity.ok(toDoService.create(toDoList));
     }
 
-//    @PutMapping("todo/")
-//    public ResponseEntity<ToDoList> taskDone(@RequestBody ToDoList toDoList) {
-//        return ResponseEntity.ok(toDoService.taskDone(toDoList));
-//    }
+    @PutMapping("todo/{id}")
+    public ResponseEntity<ToDoList> taskDone(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(toDoService.taskDone(id));
+    }
 
 
 }
