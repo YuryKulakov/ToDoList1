@@ -9,8 +9,9 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-    @Column(name = "username",unique = true)
+    @Column(name = "username", unique = true)
     private String username;
+    private String password;
 
     public Integer getId() {
         return id;
@@ -26,5 +27,13 @@ public class User {
 
     public void setUsername(String userName) {
         this.username = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

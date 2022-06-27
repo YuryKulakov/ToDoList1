@@ -6,6 +6,7 @@ import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NonUniqueResultException;
 import java.util.List;
 
 @Service
@@ -21,6 +22,25 @@ public class UserService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+    public User getUser(User user){
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
+
+    public boolean getUserByUsername(String username, String password) {
+        boolean username_present;
+        boolean password_present;
+        try {
+            username_present = userRepository.findByUsername(username) != null;
+            System.out.println("Username present: " + username_present);
+            password_present = userRepository.findByPassword(password) != null;
+            System.out.println("Password present: " + password_present);
+        } catch(NonUniqueResultException nre) {
+            return true;
+        }
+        return username_present && password_present;
+    }
+
 
 //    /*the method checks for the presence of a user by name in the repository,
 //    if there is no user in the database - it returns false, if a user with the same name exists - true*/
