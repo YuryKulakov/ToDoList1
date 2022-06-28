@@ -51,7 +51,8 @@ public class ToDoService {
 
 
 
-    public void delete(Long id) {
+    public String delete(Long id) {
         toDoRepository.deleteById(id);
+        return id+" task delete";
     }
 }

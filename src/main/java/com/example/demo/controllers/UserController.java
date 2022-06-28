@@ -3,9 +3,11 @@ package com.example.demo.controllers;
 import com.example.demo.domain.User;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class UserController {
     @Autowired
     private UserService userService;
@@ -14,9 +16,16 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    private String homePage(Model model) {
+        model.addAttribute("title","Домашняя страница");
+        return "home.html";
+    }
+
     @GetMapping("/login")
-    private User getCurrentUser(@RequestBody User user) {
-        return userService.getUser(user);
+    private String getCurrentUser() {
+//        userService.getUser(user);
+        return "login.html";
     }
 
     @GetMapping("/login/{username}/{password}")
