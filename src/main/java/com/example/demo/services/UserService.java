@@ -23,22 +23,36 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUser(User user){
+    public User getUser(User user) {
         return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
+
+    public User getUser(String username) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(user.getPassword());
+
+        return user;
+    }
+
+    public boolean chekPasAndLog(String username, String password) {
+
+        if ((username != null) && (password!= null)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean getUserByUsername(String username, String password) {
         boolean username_present;
         boolean password_present;
-        try {
-            username_present = userRepository.findByUsername(username) != null;
-            System.out.println("Username present: " + username_present);
-            password_present = userRepository.findByPassword(password) != null;
-            System.out.println("Password present: " + password_present);
-        } catch(NonUniqueResultException nre) {
+
+        if ((username_present = userRepository.findByUsername(username) != null) && (password_present = userRepository.findByPassword(password) != null)) {
             return true;
+        }else{
+            return false;
         }
-        return username_present && password_present;
     }
 
 

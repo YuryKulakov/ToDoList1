@@ -15,32 +15,28 @@
   <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Registration</a>
+        <a class="nav-link active" aria-current="page" href="/registration">Registration</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Profile</a>
+        <a class="nav-link" href="/create">Create ToDo</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Switch account</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
-        <ul class="dropdown-menu" aria-labelledby="dropdown01">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </li>
     </ul>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+  </div>
+  <tr th:each="task : ${todo}">
+    <td th:text="${task.title}"></td>
+    <td th:text="${task.done}"></td>
+    <td th:text="${task.dateNow}"></td>
+    <td th:text="${task.priority}"></td>
+  </tr>
+    <div>
+    </div>
   </div>
 </div>
-<p th:text="'Hello, ' + ${title} + '!'" />
 </body>
 </html>

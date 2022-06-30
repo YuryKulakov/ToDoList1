@@ -12,15 +12,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/")
-    private String homePage(Model model) {
-        model.addAttribute("title","Домашняя страница");
-        return "home.html";
-    }
+//    @GetMapping("/")
+//    private String homePage(Model model) {
+//        model.addAttribute("title","Домашняя страница");
+//        return "home.html";
+//    }
 
     @GetMapping("/login")
     private String getCurrentUser() {
@@ -28,16 +24,31 @@ public class UserController {
         return "login.html";
     }
 
-    @GetMapping("/login/{username}/{password}")
-    private boolean findUserByUsername(@PathVariable String username, @PathVariable String password) {
-        System.out.println("GET User by username and password *****");
-        return userService.getUserByUsername(username, password);
+    @GetMapping("/registration")
+    private String registrationPage() {
+        return "registration.html";
     }
 
-    @PostMapping("/createuser")
-    private boolean addUser(@RequestBody User user) {
-        userService.saveUser(user);
-        return true;
+    @PostMapping (value = "/login")
+    public String loginByUsernameAndPassword(@ModelAttribute User user) {
+        User serviceUser = userService.getUser(user);
+        if (serviceUser != null) {
+            return "redirect:/";
+        }
+        return "login.html";
     }
+
+
+    @PostMapping (value = "/registration")
+    public String registrationUser(@ModelAttribute User user) {
+        if( userService.chekPasAndLog(user.getUsername(),user.getPassword())) {
+            userService.saveUser(user);
+        }else{
+            return "registration.html";
+        }
+        return "redirect:/login";
+    }
+
+
 
 }

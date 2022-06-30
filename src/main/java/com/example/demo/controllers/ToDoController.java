@@ -5,12 +5,12 @@ import com.example.demo.services.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/todo")
+@Controller
 public class ToDoController {
     public ToDoService toDoService;
 
@@ -19,9 +19,16 @@ public class ToDoController {
         this.toDoService = toDoService;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/tasks")
     public List<ToDoList> getAll() {
         return toDoService.getAll();
+    }
+
+    @GetMapping("/")
+    private String homePage(Model model) {
+        model.addAttribute("title","Домашняя страница");
+        model.addAttribute("todo",toDoService.getAll());
+        return "home.html";
     }
 
     @GetMapping("/listtodobyusername")
@@ -34,10 +41,10 @@ public class ToDoController {
         return toDoService.getFindByTitle(title);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<ToDoList> create(@RequestBody ToDoList toDoList) {
-        return ResponseEntity.ok(toDoService.create(toDoList));
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<ToDoList> create(@RequestBody ToDoList toDoList) {
+//        return ResponseEntity.ok(toDoService.create(toDoList));
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<ToDoList> taskDone(@PathVariable(name = "id") Long id) {
