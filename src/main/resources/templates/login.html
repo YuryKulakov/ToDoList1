@@ -95,16 +95,15 @@ body {
 </head>
 <body>
 <main class="form-signin w-100 m-auto">
-        <form method="post" th:action="@{/login}" th:object="${user}">
-        <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <form id = "loginForm" name = "loginForm">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="username" name="username" placeholder="text">
+            <input type="text" class="form-control" id="username" placeholder="text" value="qwerty">
             <label for="username">Email address</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password" value="qwerty">
             <label for="password">Password</label>
         </div>
 
@@ -118,6 +117,5 @@ body {
             <p class="mt-5 mb-3 text-muted">created by Kulakov Yury</p>
     </form>
 </main>
-</form>
 </body>
 </html>

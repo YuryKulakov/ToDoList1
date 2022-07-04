@@ -28,16 +28,12 @@ public class UserService {
     }
 
     public User getUser(String username) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(user.getPassword());
-
-        return user;
+        return userRepository.findByUsername(username);
     }
 
     public boolean chekPasAndLog(String username, String password) {
 
-        if ((username != null) && (password!= null)) {
+        if ((username != null && username.length()>=6) && (password!= null && password.length()>=6)) {
             return true;
         }else{
             return false;

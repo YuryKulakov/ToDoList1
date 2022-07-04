@@ -96,15 +96,14 @@ body {
 <body>
 <main class="form-signin w-100 m-auto">
     <form method="post" th:action="@{/registration}" th:object="${user}">
-        <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Register now</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="username" name="username" placeholder="text">
+            <input type="text" class="form-control" id="username" name="username" placeholder="text" value="qwerty">
             <label for="username">Login</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="qwerty">
             <label for="password">Password</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Registration</button>

@@ -18,7 +18,7 @@ public class UserController {
 //        return "home.html";
 //    }
 
-    @GetMapping("/login")
+    @GetMapping("/")
     private String getCurrentUser() {
 //        userService.getUser(user);
         return "login.html";
@@ -27,15 +27,6 @@ public class UserController {
     @GetMapping("/registration")
     private String registrationPage() {
         return "registration.html";
-    }
-
-    @PostMapping (value = "/login")
-    public String loginByUsernameAndPassword(@ModelAttribute User user) {
-        User serviceUser = userService.getUser(user);
-        if (serviceUser != null) {
-            return "redirect:/";
-        }
-        return "login.html";
     }
 
 

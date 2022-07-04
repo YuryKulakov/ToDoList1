@@ -46,7 +46,7 @@ public class ToDoService {
     }
 
     public List<ToDoList> getTodoForUser(String username) {
-        return toDoRepository.findAllByUsername(username);
+        return toDoRepository.findAllByUsernameAndDone(username,false);
     }
 
 
